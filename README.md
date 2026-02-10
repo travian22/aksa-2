@@ -1,59 +1,236 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# AKSA Employee Management System - Backend
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Link Github : https://github.com/travian22/aksa-2
+Link Deployment : https://aksa-be.chilltrav.tech
 
-## About Laravel
+## Tentang Project
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+**AKSA Employee Management System** adalah aplikasi backend untuk manajemen karyawan yang komprehensif. Sistem ini memungkinkan organisasi untuk mengelola data karyawan, divisi, kehadiran, dan aktivitas audit dengan mudah dan efisien.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### Fitur Utama
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- ✅ **Manajemen Karyawan** - CRUD lengkap untuk data karyawan
+- ✅ **Manajemen Divisi** - Mengelola struktur organisasi
+- ✅ **Tracking Kehadiran** - Pencatatan dan analisis kehadiran
+- ✅ **Activity Logs** - Audit trail untuk semua perubahan sistem
+- ✅ **Dashboard Analytics** - Statistik dan ringkasan data
+- ✅ **User Management** - Manajemen pengguna dengan hak akses
+- ✅ **Export Data** - Export data karyawan ke berbagai format
+- ✅ **Token-based Authentication** - Keamanan dengan Laravel Sanctum
 
-## Learning Laravel
+## Teknologi Stack
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+| Layer | Teknologi |
+|-------|-----------|
+| **Framework** | Laravel 11 |
+| **Language** | PHP 8.2+ |
+| **Database** | MySQL |
+| **Authentication** | Laravel Sanctum |
+| **API Format** | RESTful JSON |
+| **Frontend Tools** | Vite, Tailwind CSS, Vue.js (optional) |
+| **Testing** | Pest PHP |
+| **Container** | Docker, Docker Compose |
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## Struktur Project
 
-## Laravel Sponsors
+```
+aksa-be/
+├── app/
+│   ├── Http/Controllers/     # Controller API endpoints
+│   ├── Models/              # Database models (User, Employee, Division, etc)
+│   └── Providers/           # Service providers
+├── database/
+│   ├── migrations/          # Database schema migrations
+│   ├── factories/           # Model factories untuk testing
+│   └── seeders/             # Database seeders
+├── routes/
+│   └── api.php              # API routes
+├── tests/                   # Unit & Feature tests (Pest)
+├── docker/                  # Docker configuration
+└── config/                  # Konfigurasi aplikasi
+```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+## API Endpoints
 
-### Premium Partners
+Total **29 endpoints** dengan dokumentasi lengkap di [API_DOCUMENTATION.md](API_DOCUMENTATION.md)
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+### Kategori Endpoint:
+
+1. **Authentication** (2 endpoints)
+   - POST `/login` - Login user
+   - POST `/logout` - Logout user
+
+2. **Profile** (3 endpoints)
+   - GET `/profile` - Lihat profil user
+   - PUT `/profile` - Update profil user
+   - PUT `/profile/password` - Ubah password
+
+3. **User Management** (3 endpoints)
+   - POST `/register` - Daftar user baru
+   - GET `/users` - List semua users
+   - DELETE `/users/{id}` - Hapus user
+
+4. **Divisions** (5 endpoints)
+   - CRUD lengkap untuk divisi/departemen
+
+5. **Employees** (8 endpoints)
+   - CRUD lengkap, export, summary, bulk delete
+
+6. **Attendances** (4 endpoints)
+   - Kelola data kehadiran dengan summary
+
+7. **Activity Logs** (2 endpoints)
+   - Lihat log aktivitas sistem
+
+8. **Dashboard** (1 endpoint)
+   - GET `/dashboard` - Ringkasan data dashboard
+
+## Instalasi & Setup
+
+### Prerequisites
+- PHP 8.2+
+- Composer
+- MySQL 5.7+
+- Node.js 16+
+- Docker (optional)
+
+### Setup Local
+
+```bash
+# Clone repository
+git clone <repository-url>
+cd aksa-be
+
+# Install dependencies
+composer install
+npm install
+
+# Setup environment
+cp .env.example .env
+php artisan key:generate
+
+# Database setup
+php artisan migrate --seed
+
+# Build assets
+npm run build
+
+# Run development server
+php artisan serve
+```
+
+Aplikasi akan berjalan di `http://localhost:8000`
+
+### Setup dengan Docker
+
+```bash
+# Build dan jalankan container
+docker-compose up --build
+
+# Akses container PHP
+docker-compose exec app bash
+
+# Jalankan migrasi
+php artisan migrate --seed
+
+# Akses di http://localhost
+```
+
+## Development Commands
+
+```bash
+# Development server dengan hot reload
+composer run dev
+
+# Database migration
+php artisan migrate              # Jalankan semua migrations
+php artisan migrate:fresh --seed # Reset database + seed
+
+# Tinker shell (PHP interactive)
+php artisan tinker
+
+# Run tests
+composer test
+
+# Code quality checks
+composer pint    # Format code
+composer stan    # Static analysis
+```
+
+## Authentication
+
+Semua endpoint kecuali `/login` memerlukan **Bearer Token** di header:
+
+```
+Authorization: Bearer {token}
+```
+
+Dapatkan token dengan login:
+
+```bash
+POST http://localhost:8000/api/login
+Content-Type: application/json
+
+{
+  "email": "user@example.com",
+  "password": "password"
+}
+```
+
+## Response Format
+
+### Success Response
+```json
+{
+  "status": "success",
+  "message": "Data berhasil diambil",
+  "data": { ... }
+}
+```
+
+### Error Response
+```json
+{
+  "status": "error",
+  "message": "Pesan error"
+}
+```
+
+Lihat [API_DOCUMENTATION.md](API_DOCUMENTATION.md) untuk format detail lengkap.
+
+## Database Models
+
+- **User** - Data pengguna sistem
+- **Employee** - Data karyawan
+- **Division** - Struktur divisi/departemen
+- **Attendance** - Data kehadiran
+- **ActivityLog** - Audit trail
+
+## Testing
+
+```bash
+# Jalankan semua tests
+composer test
+
+# Test specific file
+composer test tests/Feature/ExampleTest.php
+
+# Test dengan coverage
+composer test -- --coverage
+```
+
+Menggunakan framework testing **Pest PHP** yang modern dan mudah digunakan.
 
 ## Contributing
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Kontribusi sangat diterima! Silakan:
 
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+1. Fork repository
+2. Buat feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit changes (`git commit -m 'Add AmazingFeature'`)
+4. Push ke branch (`git push origin feature/AmazingFeature`)
+5. Buat Pull Request
 
 ## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+This project is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
